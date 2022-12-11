@@ -8,4 +8,5 @@ import br.com.mv.estagio.cubo.crudpaciente.entities.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, UUID>{
 
+	Usuario findByEmail(String email);
 }
