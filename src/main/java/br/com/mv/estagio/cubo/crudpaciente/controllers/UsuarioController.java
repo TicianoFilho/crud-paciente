@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.mv.estagio.cubo.crudpaciente.domain.Role;
 import br.com.mv.estagio.cubo.crudpaciente.domain.Usuario;
+import br.com.mv.estagio.cubo.crudpaciente.dtos.RoleToUserDto;
 import br.com.mv.estagio.cubo.crudpaciente.services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 
@@ -38,5 +39,11 @@ public class UsuarioController {
 	public ResponseEntity<Role> saveRole(@RequestBody Role role) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/usuarios/roles").toUriString());
 		return ResponseEntity.created(uri).body(usuarioService.saveRole(role));
+	}
+	
+	@PostMapping("usuarios/roles/addtouser")
+	public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserDto roleToUserDto) {
+		usuarioService.addRoleToUsuario(roleToUserDto.getEmailUsuario(), roleToUserDto.getDescricaoRole());
+		return ResponseEntity.ok().build();
 	}
 }
