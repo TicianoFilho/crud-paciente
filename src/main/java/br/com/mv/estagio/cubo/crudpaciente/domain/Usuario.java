@@ -1,31 +1,38 @@
-package br.com.mv.estagio.cubo.crudpaciente.entities;
+package br.com.mv.estagio.cubo.crudpaciente.domain;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import br.com.mv.estagio.cubo.crudpaciente.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "TB_ROLE")
-public class Role {
+@NoArgsConstructor
+@Entity(name = "TB_USUARIO")
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@Column(nullable = false, length = 100)
-	@Enumerated(EnumType.STRING)
-	private RoleEnum descricao;
+	private String nome;
+	
+	@Column(nullable = false, unique = true)
+	private String email;
+	
+	@Column(nullable = false)
+	private String senha;
+	
+	@Column(nullable = false)
+	private List<Role> roles;
+	
 }
