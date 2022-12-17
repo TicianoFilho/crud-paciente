@@ -25,16 +25,19 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario saveUsuario(Usuario usuario) {
+		log.info("saving usuario {} to the database", usuario.getNome());
 		return usuarioRepository.save(usuario);
 	}
 
 	@Override
 	public Role saveRole(Role role) {
+		log.info("saving role {} to the database", role.getDescricao());
 		return roleRepository.save(role);
 	}
 
 	@Override
 	public void addRoleToUsuario(String email, String roleDescricao) {
+		log.info("Adding role {} to the user {}", roleDescricao, email);
 		Usuario usuario = usuarioRepository.findByEmail(email);
 		Role role = roleRepository.findByDescricao(roleDescricao);
 		usuario.getRoles().add(role);
@@ -42,11 +45,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario getUsuario(String email) {
+		log.info("fetching user {}", email);
 		return usuarioRepository.findByEmail(email);
 	}
 
 	@Override
 	public List<Usuario> getUsuarios(Page<Usuario> page) {
+		log.info("fetching all users");
 		return usuarioRepository.findAll();
 	}
 
