@@ -1,13 +1,16 @@
 package br.com.mv.estagio.cubo.crudpaciente.domain;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,7 +35,7 @@ public class Usuario {
 	@Column(nullable = false)
 	private String senha;
 	
-	@Column(nullable = false)
-	private List<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<Role> roles = new ArrayList<>();
 	
 }

@@ -13,5 +13,5 @@ public interface UsuarioService {
 	Role saveRole(Role role);
 	void addRoleToUsuario(String email, String roleDescricao);
 	Usuario getUsuario(String email);
-	List<Usuario> getUsuarios(Page<Usuario> page);
+	List<Usuario> getUsuarios();
 }

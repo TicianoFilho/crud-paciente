@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> getUsuarios(Page<Usuario> page) {
+	public List<Usuario> getUsuarios() {
 		log.info("fetching all users");
 		return usuarioRepository.findAll();
 	}
